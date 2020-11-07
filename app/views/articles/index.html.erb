@@ -5,15 +5,19 @@
       <div class="article">
         <div class="row">
           <div class="col-sm-4">
+          <%= link_to "articles/secure_online_experience" do%>
             <%= image_tag "online-security.png", class: "article-image-index mb-3"%>
+          <% end %>
           </div>
           <div class="col-sm-8">
-            <h2 class="mb-2">Three Ways to Have a More Secure Online Experience</h2>
+            <%= link_to "articles/secure_online_experience" do%>
+              <h2 class="mb-2">Three Ways to Have a More Secure Online Experience</h2>
+            <% end %>
             <p class="acticle-author-index mb-2">By Joe Doe</p>
             <p>
               Criminals have gotten more and more clever when it comes to their ability to track and hack.
             </p>
-            <a class="btn btn-primary" href="#" role="button">Read more</a>
+            <%= link_to "Read more", "articles/secure_online_experience", class: "btn btn-primary", role: "button"%>
           </div>
         </div>
       </div>
