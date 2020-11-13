@@ -2,40 +2,27 @@
   <div class="row">
     <div class="col-md-11">
       <h1 class="my-3 pb-2 border-bottom">Articles</h1>
-      <div class="article">
-        <div class="row">
-          <div class="col-sm-4">
-          <%= link_to "articles/secure_online_experience" do%>
-            <%= image_tag "online-security.png", class: "article-image-index mb-3"%>
-          <% end %>
-          </div>
-          <div class="col-sm-8">
-            <%= link_to "articles/secure_online_experience" do%>
-              <h2 class="mb-2">Three Ways to Have a More Secure Online Experience</h2>
+      <% @articles.each do |article| %>
+        <div class="article">
+          <div class="row">
+            <div class="col-sm-4">
+            <%= link_to article_path(article) do%>
+              <%= image_tag article.image, class: "article-image-index mb-3"%>
             <% end %>
-            <p class="acticle-author-index mb-2">By Joe Doe</p>
-            <p>
-              Criminals have gotten more and more clever when it comes to their ability to track and hack.
-            </p>
-            <%= link_to "Read more", "articles/secure_online_experience", class: "btn btn-primary", role: "button"%>
+            </div>
+            <div class="col-sm-8">
+              <%= link_to article_path(article) do%>
+                <h2 class="mb-2"><%= article.title %></h2>
+              <% end %>
+              <p class="acticle-author-index mb-2">By <%= article.author %></p>
+              <p>
+                <%= article.excerpt %>
+              </p>
+              <%= link_to "Read more", article_path(article), class: "btn btn-primary", role: "button"%>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="article">
-        <div class="row">
-          <div class="col-sm-4">
-            <%= image_tag "edu-tech-min.png", class: "article-image-index mb-3"%>
-          </div>
-          <div class="col-sm-8">
-            <h2 class="mb-2">7 Best Examples of Educational Technologies </h2>
-            <p class="acticle-author-index mb-2">By Joe Doe</p>
-            <p>
-              Since technology advances by the day, keeping up with innovations in the classroom can seem daunting.
-            </p>
-            <a class="btn btn-primary" href="#" role="button">Read more</a>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
