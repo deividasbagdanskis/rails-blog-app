@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="article">
+    <h1 class="mt-3"><%= @article.title %></h1>
+    <p class="acticle-author-index mb-3">By <%= @article.author %></p>
+    <%= image_tag @article.image, class: "article-image mb-3"%>
+    <%= simple_format(@article.text) %>
+    <%= link_to "Back to all articles", articles_path %>
+  </div>
+</div>
