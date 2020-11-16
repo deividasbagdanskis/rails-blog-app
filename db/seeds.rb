@@ -167,3 +167,5 @@ Article.create!([{
     "Importantly, in this age, incorporating tech into the classroom is not a " \
     "luxury but a necessity."
 }])
+
+User.create!(email: "admin@techblog.com", password: "admin")
