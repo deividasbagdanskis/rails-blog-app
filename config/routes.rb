@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # sets pages home view as root
+  resources :users # sets pages home view as root
   root 'pages#home'
 
   resources :articles # redirects to pages/about view
