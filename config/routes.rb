@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :users # sets pages home view as root
-  root 'pages#home'
-
+  # root 'pages#home' # sets pages home view as root
+  root :to => 'pages#home'
   resources :articles # redirects to pages/about view
+  # resources :users
   resources :sessions, only: %i[new create destroy]
 
   get 'about', to: 'pages#about'
