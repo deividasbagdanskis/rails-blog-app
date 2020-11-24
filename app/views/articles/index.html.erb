@@ -25,14 +25,19 @@
               <% end %>
               <div class="row mx-0">
                 <p class="acticle-metadata-index mb-2">By <%= article.author %></p>
-                <p class="acticle-metadata-index mb-2 mx-3">Published on <%= article.created_at.strftime("%Y-%m-%d") %></p>
+                <p class="acticle-metadata-index mb-2 mx-3">
+                  Published on <%= article.created_at.strftime("%Y-%m-%d") %>
+                </p>
               </div>
               <p>
                 <%= article.excerpt %>
               </p>
               <div class="row mx-0">
                 <%= link_to "Read more", article_path(article), class: "btn btn-primary", role: "button" %>
-                <%= link_to "Edit", edit_article_path(article), class: "mx-4" %>
+                <% if current_user && current_user.email == 'admin@techblog.com'%>
+                  <%= link_to "Edit", edit_article_path(article), class: "mx-4" %>
+                  <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
               </div>
             </div>
           </div>
