@@ -30,7 +30,10 @@
               <p>
                 <%= article.excerpt %>
               </p>
-              <%= link_to "Read more", article_path(article), class: "btn btn-primary", role: "button"%>
+              <div class="row mx-0">
+                <%= link_to "Read more", article_path(article), class: "btn btn-primary", role: "button" %>
+                <%= link_to "Edit", edit_article_path(article), class: "mx-4" %>
+              </div>
             </div>
           </div>
         </div>

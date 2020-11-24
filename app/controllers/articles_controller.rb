@@ -23,6 +23,26 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+
+    @updated_article = article_params
+
+    unless @updated_article["image_file"].nil?
+      @updated_article["image"] = nil
+    end
+
+    if @article.update(@updated_article)
+      redirect_to @article
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def article_params
