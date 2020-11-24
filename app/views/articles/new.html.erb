@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container mb-5">
   <h1 class="mb-3 pt-3">New article</h1>
   <%= form_with model: @article, local: true do |form| %>
 
     <% if @article.errors.any? %>
-      <div id="error_explanation">
-        <h2>
+      <div id="error_explanation" class="alert-danger py-2 px-3 mb-2">
+        <h4>
           <%= pluralize(@article.errors.count, "error") %> prohibited
           this article from being saved:
-        </h2>
-        <ul>
+        </h4>
+        <ul class="my-0">
           <% @article.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
           <% end %>
@@ -17,12 +17,12 @@
     <% end %>
 
     <div class="form-group">
-      <%= form.label :title %><br>
+      <%= form.label :title %>
       <%= form.text_field :title, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :author %><br>
+      <%= form.label :author %>
       <%= form.text_field :author, class: "form-control" %>
     </div>
 
@@ -32,12 +32,12 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :excerpt %><br>
+      <%= form.label :excerpt %>
       <%= form.text_field :excerpt, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :text %><br>
+      <%= form.label :text %>
       <%= form.text_area :text, class: "form-control", rows: 5 %>
     </div>
 
