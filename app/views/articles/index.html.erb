@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11">
-      <h1 class="my-3 pb-2 border-bottom">Articles</h1>
+      <div class="row my-3 pb-2 mx-0 border-bottom justify-content-between">
+        <h1 class="my-0">Articles</h1>
+        <%= form_tag(articles_path, method: :get, class: "form-inline") do %>
+          <%= text_field_tag(:search, params[:search], class: "form-control mr-2", placeholder: "Search") %>
+          <%= submit_tag("Search", class: "btn btn-outline-success") %>
+        <% end %>
+      </div>
       <% if current_user && current_user.email == 'admin@techblog.com'%>
         <div class="mb-2">
           <%= link_to 'New article', new_article_path %>
