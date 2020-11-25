@@ -4,7 +4,6 @@ class Article < ApplicationRecord
   validates :author, presence: true, length: { minimum: 5 }
   validates :excerpt, presence: true, length: { in: 15..175 }
   validates :text, presence: true
-  validates :image_file, presence: true
 
   def self.search(search)
     if search

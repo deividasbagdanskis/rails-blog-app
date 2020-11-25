@@ -9,10 +9,11 @@
           data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
-    <% if @article.image %>
-      <%= image_tag @article.image, class: "article-image mb-3" %>
+    <% if @article.image_file.attached? %>
+      <%= image_tag url_for(@article.image_file), class: "article-image-index mb-3"%>
+    <% elsif @article.image %>
+      <%= image_tag @article.image, class: "article-image-index mb-3" %>
     <% else %>
-      <%= image_tag url_for(@article.image_file), class: "article-image mb-3"%>
     <% end %>
     <%= simple_format(@article.text) %>
     <%= link_to "Back to all articles", articles_path %>

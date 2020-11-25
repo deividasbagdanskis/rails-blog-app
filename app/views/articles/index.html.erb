@@ -18,10 +18,11 @@
           <div class="row">
             <div class="col-sm-4">
             <%= link_to article_path(article) do%>
-              <% if article.image %>
+              <% if article.image_file.attached? %>
+                <%= image_tag url_for(article.image_file), class: "article-image-index mb-3"%>
+              <% elsif article.image %>
                 <%= image_tag article.image, class: "article-image-index mb-3" %>
               <% else %>
-                <%= image_tag url_for(article.image_file), class: "article-image-index mb-3"%>
               <% end %>
             <% end %>
             </div>
