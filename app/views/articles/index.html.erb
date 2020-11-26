@@ -1,41 +1,55 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11">
-      <h1 class="my-3 pb-2 border-bottom">Articles</h1>
-      <div class="article">
-        <div class="row">
-          <div class="col-sm-4">
-          <%= link_to "articles/secure_online_experience" do%>
-            <%= image_tag "online-security.png", class: "article-image-index mb-3"%>
-          <% end %>
-          </div>
-          <div class="col-sm-8">
-            <%= link_to "articles/secure_online_experience" do%>
-              <h2 class="mb-2">Three Ways to Have a More Secure Online Experience</h2>
+      <div class="row my-3 pb-2 mx-0 border-bottom justify-content-between">
+        <h1 class="my-0">Articles</h1>
+        <%= form_tag(articles_path, method: :get, class: "form-inline") do %>
+          <%= text_field_tag(:search, params[:search], class: "form-control mr-2", placeholder: "Search") %>
+          <%= submit_tag("Search", class: "btn btn-outline-success") %>
+        <% end %>
+      </div>
+      <% if current_user && current_user.email == 'admin@techblog.com'%>
+        <div class="mb-2">
+          <%= link_to 'New article', new_article_path %>
+        </div>
+      <% end %>
+      <% @articles.each do |article| %>
+        <div class="article">
+          <div class="row">
+            <div class="col-sm-4">
+            <%= link_to article_path(article) do%>
+              <% if article.image_file.attached? %>
+                <%= image_tag url_for(article.image_file), class: "article-image-index mb-3"%>
+              <% elsif article.image %>
+                <%= image_tag article.image, class: "article-image-index mb-3" %>
+              <% else %>
+              <% end %>
             <% end %>
-            <p class="acticle-author-index mb-2">By Joe Doe</p>
-            <p>
-              Criminals have gotten more and more clever when it comes to their ability to track and hack.
-            </p>
-            <%= link_to "Read more", "articles/secure_online_experience", class: "btn btn-primary", role: "button"%>
+            </div>
+            <div class="col-sm-8">
+              <%= link_to article_path(article) do%>
+                <h2 class="mb-2"><%= article.title %></h2>
+              <% end %>
+              <div class="row mx-0">
+                <p class="acticle-metadata-index mb-2">By <%= article.author %></p>
+                <p class="acticle-metadata-index mb-2 mx-3">
+                  Published on <%= article.created_at.strftime("%Y-%m-%d") %>
+                </p>
+              </div>
+              <p>
+                <%= article.excerpt %>
+              </p>
+              <div class="row mx-0">
+                <%= link_to "Read more", article_path(article), class: "btn btn-primary", role: "button" %>
+                <% if current_user && current_user.email == 'admin@techblog.com'%>
+                  <%= link_to "Edit", edit_article_path(article), class: "mx-4" %>
+                  <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="article">
-        <div class="row">
-          <div class="col-sm-4">
-            <%= image_tag "edu-tech-min.png", class: "article-image-index mb-3"%>
-          </div>
-          <div class="col-sm-8">
-            <h2 class="mb-2">7 Best Examples of Educational Technologies </h2>
-            <p class="acticle-author-index mb-2">By Joe Doe</p>
-            <p>
-              Since technology advances by the day, keeping up with innovations in the classroom can seem daunting.
-            </p>
-            <a class="btn btn-primary" href="#" role="button">Read more</a>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
