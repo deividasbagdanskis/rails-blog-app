@@ -5,6 +5,8 @@ class Article < ApplicationRecord
   validates :excerpt, presence: true, length: { in: 15..175 }
   validates :text, presence: true
 
+  # If search parameter is passed searches for articles with titles that
+  # match the search parameter, otherwise retrieves all articles from the db
   def self.search(search)
     if search
       self.all.where('lower(title) LIKE ?', "%#{search}%")

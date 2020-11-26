@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'pages#home' # sets pages home view as root
   resources :articles
-  resources :sessions, only: %i[new create destroy]
+  resources :sessions, only: %i[new create destroy] # routes for login and logout
 
   get 'about', to: 'pages#about' # redirects to pages/about view
   get 'login', to: 'sessions#new', as: 'login'

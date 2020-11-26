@@ -1,8 +1,10 @@
+# Handles user login and logout
 class SessionsController < ApplicationController
   def new
     @user = User.new
   end
 
+  # Authenticates a user and saves user id in session
   def create
     @request_user = User.new(user_params)
 
@@ -17,6 +19,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # User log out
   def destroy
     session[:user_id] = nil
     redirect_to root_path
