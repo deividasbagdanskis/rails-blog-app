@@ -168,4 +168,4 @@ Article.create!([{
     "luxury but a necessity."
 }])
 
-User.create!(email: "admin@techblog.com", password: "admin")
+User.create!(email: "admin@techblog.com", password: "admin", is_admin: true)
