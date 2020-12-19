@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
+  before_action :require_admin
+  skip_before_action :require_admin, only: [:index, :show]
+
   def index
     @articles = Article.search(params[:search])
   end
@@ -55,5 +58,17 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :author, :image_file, :excerpt,
       :text)
+  end
+
+  def require_admin
+    if current_user != nil
+      unless current_user.is_admin?
+        render plain: "You must be log in as admin to access this section",
+          status: 403
+      end
+    else
+      render plain: "You must be log in as admin to access this section",
+        status: 403
+    end
   end
 end
