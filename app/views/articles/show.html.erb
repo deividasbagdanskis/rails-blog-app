@@ -3,7 +3,7 @@
     <h1 class="mt-3"><%= @article.title %></h1>
     <p class="acticle-author-index mb-3">By <%= @article.author %></p>
     <div class="row px-3 my-2">
-      <% if current_user && current_user.email == 'admin@techblog.com'%>
+      <% if current_user && current_user.is_admin %>
         <%= link_to "Edit", edit_article_path(@article) %>
         <%= link_to 'Delete', article_path(@article), class: "mx-3", method: :delete,
           data: { confirm: 'Are you sure?' } %>
