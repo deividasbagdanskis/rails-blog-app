@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   has_one_attached :image_file
+  has_many :comments
+
   validates :title, presence: true, length: { in: 10..85 }
   validates :author, presence: true, length: { minimum: 5 }
   validates :excerpt, presence: true, length: { in: 15..175 }
