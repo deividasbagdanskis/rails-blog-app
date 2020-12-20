@@ -2,7 +2,7 @@
   <section>
     <h1>Login</h1>
     <hr/>
-    <%= form_with model: @user, url: sessions_path do |form| %>
+    <%= form_with model: @user, url: login_post_path do |form| %>
       <% if flash[:error] %>
         <div class="alert alert-danger" role="alert">
           <%= flash[:error] %>

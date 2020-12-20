@@ -1,11 +1,11 @@
 # Handles user login and logout
-class SessionsController < ApplicationController
-  def new
+class LoginController < ApplicationController
+  def login_form
     @user = User.new
   end
 
   # Authenticates a user and saves user id in session
-  def create
+  def login
     @request_user = User.new(user_params)
 
     user = User.find_by(email: @request_user.email)
@@ -15,12 +15,12 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = 'Email or password is invalid'
-      redirect_to action: :new
+      redirect_to action: :login_form
     end
   end
 
   # User log out
-  def destroy
+  def logout
     session[:user_id] = nil
     redirect_to root_path
   end
