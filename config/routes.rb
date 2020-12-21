@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root :to => 'pages#home' # sets pages home view as root
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   get 'about', to: 'pages#about' # redirects to pages/about view
 
