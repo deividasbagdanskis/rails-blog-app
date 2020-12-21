@@ -1,4 +1,12 @@
 <div class="mb-2">
-  <p class="font-weight-bold mb-2"><%= comment.username %></p>
+  <div class="row mx-0">
+    <p class="font-weight-bold mb-2"><%= comment.username %></p>
+    <% if comment.created_at && comment.user %>
+      <p class="mx-2 text-secondary"><%= comment.created_at.strftime("%Y-%m-%d") %></p>
+      <% if current_user && (current_user.id == comment.user.id || current_user.is_admin) %>
+        <%= link_to 'Delete', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    <% end %>
+  </div>
   <p><%= comment.body %></p>
 </div>
