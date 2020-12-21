@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Main application controller
 class ApplicationController < ActionController::Base
   helper_method :current_user, :current_user_username
 

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root :to => 'pages#home' # sets pages home view as root
+  root to: 'pages#home' # sets pages home view as root
   resources :articles do
     resources :comments
   end

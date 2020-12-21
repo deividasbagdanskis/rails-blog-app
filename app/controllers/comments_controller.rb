@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Manages actions with comments
 class CommentsController < ApplicationController
   before_action :require_login
 
@@ -11,7 +14,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to article_path(@article)
     else
-      redirect_to(article_path(@article), :flash => {:error => @comment.errors})
+      redirect_to(article_path(@article), flash: { error: @comment.errors })
     end
   end
 
@@ -31,9 +34,6 @@ class CommentsController < ApplicationController
   end
 
   def require_login
-    if current_user == nil
-      render plain: "You must be log in to access this section",
-          status: 403
-    end
+    render plain: 'You must be log in to access this section', status: 403 unless current_user.nil?
   end
 end

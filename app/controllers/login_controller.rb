@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Handles user login and logout
 class LoginController < ApplicationController
   def login_form
@@ -10,7 +12,7 @@ class LoginController < ApplicationController
 
     user = User.find_by(email: @request_user.email)
 
-    if user && user.authenticate(@request_user.password)
+    if user&.authenticate(@request_user.password)
       session[:user_id] = user.id
       redirect_to root_path
     else
