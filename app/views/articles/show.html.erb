@@ -23,7 +23,7 @@
       <div class="alert alert-warning">You have to be <%= link_to "logged in", login_path, class: "alert-link" %> to comment.</div>
     <% end %>
     <p class="lead font-weight-bold mb-3"><%= pluralize(@article.comments.count, "comment") %></p>
-    <%= render @article.comments %>
+    <%= render @article.comments.select(&:persisted?) %>
     <%= link_to "Back to all articles", articles_path %>
   </div>
 </div>

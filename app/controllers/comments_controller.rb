@@ -8,9 +8,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.username = current_user_username
 
-    @comment.save
-
-    redirect_to article_path(@article)
+    if @comment.save
+      redirect_to article_path(@article)
+    else
+      redirect_to(article_path(@article), :flash => {:error => @comment.errors})
+    end
   end
 
   def destroy
