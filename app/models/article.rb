@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   has_one_attached :image_file
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true, length: { in: 10..85 }
   validates :author, presence: true, length: { minimum: 5 }
