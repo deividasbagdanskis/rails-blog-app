@@ -16,6 +16,12 @@
     <% else %>
     <% end %>
     <%= simple_format(@article.text) %>
+    <% if current_user %>
+      <%= render "comments/form" %>
+    <% else %>
+      <div class="alert alert-warning">You have to be <%= link_to "logged in", login_path, class: "alert-link" %> to comment.</div>
+    <% end %>
+    <p class="lead font-weight-bold"><%= pluralize(@article.comments.count, "comment") %> </p>
     <%= link_to "Back to all articles", articles_path %>
   </div>
 </div>
