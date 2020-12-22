@@ -2,8 +2,6 @@
 
 # Manages actions with comments
 class CommentsController < ApplicationController
-  before_action :require_login
-
   def create
     @article = Article.find(params[:article_id])
     @comment = Comment.new(comment_params)
@@ -31,9 +29,5 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body)
-  end
-
-  def require_login
-    render plain: 'You must be log in to access this section', status: 403 unless current_user.nil?
   end
 end
