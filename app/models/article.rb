@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
+# Represents an article
 class Article < ApplicationRecord
   has_one_attached :image_file
+  has_many :comments, dependent: :destroy
+
   validates :title, presence: true, length: { in: 10..85 }
   validates :author, presence: true, length: { minimum: 5 }
   validates :excerpt, presence: true, length: { in: 15..175 }
@@ -9,9 +14,9 @@ class Article < ApplicationRecord
   # match the search parameter, otherwise retrieves all articles from the db
   def self.search(search)
     if search
-      self.all.where('lower(title) LIKE ?', "%#{search}%")
+      all.where('lower(title) LIKE ?', "%#{search}%")
     else
-      self.all
+      all
     end
   end
 end

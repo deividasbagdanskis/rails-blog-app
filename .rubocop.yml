@@ -1,8 +1,9 @@
 # inherit_from: ../.rubocop.yml
 
-Style/Encoding:
-  Enabled: false
-
-Layout/LineLength:
-  Max: 79
-  AutoCorrect: true
+AllCops:
+  Exclude:
+    - "bin/**"
+    - "config/**/**/**"
+    - "db/migrate/**"
+    - "db/schema.rb"
+    - "node_modules/**/**/**/**"

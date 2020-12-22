@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -7,10 +9,12 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module RailsBlogApp
+
+  # Application
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    config.logger = Logger.new(STDOUT)
+    config.logger = Logger.new($stdout)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

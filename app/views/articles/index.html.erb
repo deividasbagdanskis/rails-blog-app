@@ -8,7 +8,7 @@
           <%= submit_tag("Search", class: "btn btn-outline-success") %>
         <% end %>
       </div>
-      <% if current_user && current_user.email == 'admin@techblog.com'%>
+      <% if current_user && current_user.is_admin %>
         <div class="mb-2">
           <%= link_to 'New article', new_article_path %>
         </div>

@@ -3,7 +3,7 @@
     <h1 class="mt-3"><%= @article.title %></h1>
     <p class="acticle-author-index mb-3">By <%= @article.author %></p>
     <div class="row px-3 my-2">
-      <% if current_user && current_user.email == 'admin@techblog.com'%>
+      <% if current_user && current_user.is_admin %>
         <%= link_to "Edit", edit_article_path(@article) %>
         <%= link_to 'Delete', article_path(@article), class: "mx-3", method: :delete,
           data: { confirm: 'Are you sure?' } %>
@@ -16,6 +16,14 @@
     <% else %>
     <% end %>
     <%= simple_format(@article.text) %>
+    <div class="border-bottom mb-3"></div>
+    <% if current_user %>
+      <%= render "comments/form" %>
+    <% else %>
+      <div class="alert alert-warning">You have to be <%= link_to "logged in", login_path, class: "alert-link" %> to comment.</div>
+    <% end %>
+    <p class="lead font-weight-bold mb-3"><%= pluralize(@article.comments.count, "comment") %></p>
+    <%= render @article.comments.select(&:persisted?) %>
     <%= link_to "Back to all articles", articles_path %>
   </div>
 </div>
